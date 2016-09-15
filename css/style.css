@@ -1,0 +1,47 @@
+#picture {
+    border: 1px solid #000;
+    cursor: crosshair;
+}
+
+.canvasButtons {
+    float: left;
+}
+
+.canvasButton {
+    margin-bottom: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.canvasButton[inUse=true] {
+    border: solid 2px #0C31A8;
+}
+
+#pencilButton {
+    background-image: url('../images/pencil.png');
+    background-size: 100%;
+    width: 38px;
+    height: 51px;
+}
+
+#eraserButton {
+    background-image: url('../images/eraser.png');
+    background-size: 100%;
+    width: 38px;
+    height: 51px;
+}
+
+.button {
+    border: solid 1px #18539c;
+    border-radius: 5px;
+    background-color: #03105f;
+    width: 35px;
+    padding: 3px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.button:hover {
+    background-color: #14ADBA;
+}
