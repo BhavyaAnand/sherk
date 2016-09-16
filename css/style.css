@@ -1,3 +1,11 @@
+body {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
 #picture {
     border: 1px solid #000;
     cursor: crosshair;
