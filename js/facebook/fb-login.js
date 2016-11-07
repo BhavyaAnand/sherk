@@ -48,10 +48,13 @@ function statusChangeCallback(response) {
     } else if (response.status === 'not_authorized') {
         // The person is logged into Facebook, but not your app.
         console.log('Error: not_authorized');
+        $('#auth-status').html('Error: Please login to the app');
+        $('.login-btn').html('<button class="btn btn-default btn-block" onclick="checkLoginState()">Login with Facebook</button>');
     } else {
         // The person is not logged into Facebook, so we're not sure if
         // they are logged into this app or not.
-        console.log('Error: not_authorized');
+        console.log('Error: not_logged_facebook');
+        $('#auth-status').html('Error: Please log into Facebook before using this app');
     }
 }
 
@@ -59,6 +62,8 @@ function statusChangeCallback(response) {
 // Button.  See the onlogin handler attached to it in the sample
 // code below.
 function checkLoginState() {
+	console.log('Logging in...');
+	$('#auth-status').html('Authenticating...');
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
     });
