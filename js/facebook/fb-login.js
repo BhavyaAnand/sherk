@@ -24,6 +24,7 @@ window.fbAsyncInit = function() {
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
     });
+    
 };
 
 // Load the SDK asynchronously
@@ -49,12 +50,13 @@ function statusChangeCallback(response) {
         // The person is logged into Facebook, but not your app.
         console.log('Error: not_authorized');
         $('#auth-status').html('Error: Please login to the app');
-        $('.login-btn').html('<button class="btn btn-default btn-block" onclick="checkLoginState()">Login with Facebook</button>');
+        
     } else {
         // The person is not logged into Facebook, so we're not sure if
         // they are logged into this app or not.
         console.log('Error: not_logged_facebook');
-        $('#auth-status').html('Error: Please log into Facebook before using this app');
+        $('#auth-status').html('Error: Please login to the app');
+        $('.login-btn').html('<button class="btn btn-default btn-block" onclick="fb_login()">Login with Facebook</button>');
     }
 }
 
@@ -82,4 +84,20 @@ function hideOverlay() {
 	$('#lobby-wrapper').css({'display': 'inherit'});
 	$('#overlay-wrapper').css({'display': 'none'});
 }
+
+function fb_login() {
+	FB.login(function(response) {
+        console.log('FB.login()');
+        if (response.authResponse) {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function(response) {
+                checkLoginState();
+            });
+        } else {
+            console.log('User cancelled login or did not fully authorize.');
+        }
+    });
+}
+
+
 
