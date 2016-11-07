@@ -44,16 +44,24 @@ Picture.prototype.addCanvasListeners = function () {
     this.canvas.onmouseout = function (e) { that.onCanvasMouseOut(e); };
 }
 
+Picture.prototype.getCanvasOffset = function() {
+  return {
+    left: this.canvas.offsetLeft,
+    top: this.canvas.offsetTop
+  }
+}
+
 Picture.prototype.onCanvasMouseDown = function (e) {
     this.drawing = true;
-    var canvasBoundingRect = this.canvas.getBoundingClientRect();
-    this.draw(e.pageX - canvasBoundingRect.left, e.pageY - canvasBoundingRect.top, true);
+    //var canvasBoundingRect = this.canvas.getBoundingClientRect();
+    var canvasOffset = this.getCanvasOffset();
+    this.draw(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top, true);
 }
 
 Picture.prototype.onCanvasMouseMove = function (e) {
     if (this.drawing) {
-        var canvasBoundingRect = this.canvas.getBoundingClientRect();
-        this.draw(e.pageX - canvasBoundingRect.left, e.pageY - canvasBoundingRect.top);
+        var canvasOffset = this.getCanvasOffset();
+        this.draw(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top);
     }
 }
 
